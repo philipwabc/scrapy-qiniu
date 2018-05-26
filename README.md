@@ -33,6 +33,7 @@ ITEM_PIPELINES = {
 * PIPELINE_QINIU_ENABLED: 是否启用本pipeline（如果将本设置项置为1，将启用本pipeline）
 * PIPELINE_QINIU_BUCKET: 存放在哪个bucket中
 * PIPELINE_QINIU_KEY_PREFIX: 资源在七牛中的key的名称为：`prefix + hash(request.url)`
+* FILES_EXPIRES: 文件过期天数
 
 最后，在抓取到网页，构造item的时候，假设需要抓取这两个网址：
 
