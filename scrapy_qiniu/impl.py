@@ -116,7 +116,13 @@ class QiniuPipeline(FilesPipeline):
         if not self.key_prefix:
             logging.getLogger('scrapy').error('PIPELINE_QINIU_KEY_PREFIX not specified')
             raise NotConfigured
-
+        
+        expires = settings.getint('FILES_EXPIRES', sys.maxint)
+        if not expires:
+            logging.getLogger('scrapy').warning('FILES_EXPIRES not specified')
+            raise NotConfigured
+        self.expires = expires
+        
         super(FilesPipeline, self).__init__(download_func=self.fetch)
 
     def _extract_key_info(self, request):
